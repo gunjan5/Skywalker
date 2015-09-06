@@ -20,14 +20,14 @@ package yellingService
 import (
 	"encoding/json"
 	"errors"
-	"log"
+	_ "log"
 	"net/http"
 	_ "strings"
 
 	"golang.org/x/net/context"
 
 	"github.com/go-kit/kit/endpoint"
-	httptransport "github.com/go-kit/kit/transport/http"
+	_ "github.com/go-kit/kit/transport/http"
 )
 
 // StringService provides operations on strings.
