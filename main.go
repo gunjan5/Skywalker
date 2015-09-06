@@ -33,7 +33,7 @@ import (
 
 func main() {
 	ctx := context.Background()
-	svc := stringService{}
+	svc := yell.stringService{}
 
 	countHandler := httptransport.Server{
 		Context:            ctx,

@@ -35,13 +35,13 @@ type StringService interface {
 	Count(string) int
 }
 
-type stringService struct{}
+type StringService struct{}
 
-func (stringService) Count(s string) int {
+func (StringService) Count(s string) int {
 	return len(s)
 }
 
-func makeCountEndpoint(svc StringService) endpoint.Endpoint {
+func MakeCountEndpoint(svc StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(countRequest)
 		v := svc.Count(req.S)
@@ -49,7 +49,7 @@ func makeCountEndpoint(svc StringService) endpoint.Endpoint {
 	}
 }
 
-func decodeCountRequest(r *http.Request) (interface{}, error) {
+func DecodeCountRequest(r *http.Request) (interface{}, error) {
 	var request countRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func decodeCountRequest(r *http.Request) (interface{}, error) {
 	return request, nil
 }
 
-func encodeResponse(w http.ResponseWriter, response interface{}) error {
+func EncodeResponse(w http.ResponseWriter, response interface{}) error {
 	return json.NewEncoder(w).Encode(response)
 }
 
