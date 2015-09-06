@@ -18,14 +18,14 @@ package main
 */
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
 	"golang.org/x/net/context"
 
 	httptransport "github.com/go-kit/kit/transport/http"
-	yell "github.com/gunjan5/Skywalker/yellingService"
+	//yell "github.com/gunjan5/Skywalker/yellingService"
+	yell "yellingService"
 )
 
 // func check(e error) error {

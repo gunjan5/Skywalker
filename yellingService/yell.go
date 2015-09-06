@@ -45,10 +45,13 @@ type YellingServiceI interface {
 type YellingService struct{}
 
 func (YellingService) Yell(s string) error {
-	// if s == "" {
-	// 	return "", ErrEmpty
-	// }
-	cmd := exec.Command("say", "bloody blood sucking (blood) blaste${}rs", s)
+	if s == "" {
+		cmd := exec.Command("say", "It's an empty string dummy!")
+		err := cmd.Run()
+		check(err)
+		return ErrEmpty
+	}
+	cmd := exec.Command("say", s)
 	err := cmd.Run()
 	//fmt.Println(check(err))
 
