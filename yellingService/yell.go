@@ -1,21 +1,11 @@
 package yellingService
 
-/*
-   Copyright (C) 2015  Gunjan Patel
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as published
-   by the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/* Copyright (C) 2015  Gunjan Patel
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of
+ * the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import (
 	"encoding/json"
@@ -53,7 +43,6 @@ func (YellingService) Yell(s string) error {
 	}
 	cmd := exec.Command("say", s)
 	err := cmd.Run()
-	//fmt.Println(check(err))
 
 	return check(err)
 }
@@ -61,8 +50,8 @@ func (YellingService) Yell(s string) error {
 func MakeYellEndpoint(svc YellingServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(yellRequest)
-		v := svc.Yell(req.S)
-		return yellResponse{v}, nil
+		e := svc.Yell(req.S)
+		return yellResponse{e}, nil
 	}
 }
 
