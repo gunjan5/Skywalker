@@ -36,14 +36,14 @@ func check(e error) error {
 	return nil
 }
 
-// StringService provides operations on strings.
+// YellingService provides operations on strings.
 type YellingServiceI interface {
 	Yell(string) error
 }
 
 type YellingService struct{}
 
-func (StringService) Yell(s string) error {
+func (YellingService) Yell(s string) error {
 	// if s == "" {
 	// 	return "", ErrEmpty
 	// }
@@ -54,7 +54,7 @@ func (StringService) Yell(s string) error {
 	return check(err)
 }
 
-func MakeYellEndpoint(svc StringServiceI) endpoint.Endpoint {
+func MakeYellEndpoint(svc YellingServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(yellRequest)
 		v := svc.Yell(req.S)
