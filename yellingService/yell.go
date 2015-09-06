@@ -31,7 +31,7 @@ import (
 )
 
 // StringService provides operations on strings.
-type StringService interface {
+type StringServiceI interface {
 	Count(string) int
 }
 
@@ -41,7 +41,7 @@ func (StringService) Count(s string) int {
 	return len(s)
 }
 
-func MakeCountEndpoint(svc StringService) endpoint.Endpoint {
+func MakeCountEndpoint(svc StringServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(countRequest)
 		v := svc.Count(req.S)
