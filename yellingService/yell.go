@@ -20,37 +20,50 @@ package yellingService
 import (
 	"encoding/json"
 	"errors"
-	_ "log"
+	"fmt"
 	"net/http"
-	_ "strings"
 
 	"golang.org/x/net/context"
 
 	"github.com/go-kit/kit/endpoint"
-	_ "github.com/go-kit/kit/transport/http"
 )
 
+func check(e error) error {
+	if e != nil {
+		fmt.Println(e)
+		return e
+	}
+	return nil
+}
+
 // StringService provides operations on strings.
-type StringServiceI interface {
-	Count(string) int
+type YellingServiceI interface {
+	Yell(string) error
 }
 
-type StringService struct{}
+type YellingService struct{}
 
-func (StringService) Count(s string) int {
-	return len(s)
+func (StringService) Yell(s string) error {
+	// if s == "" {
+	// 	return "", ErrEmpty
+	// }
+	cmd := exec.Command("say", "bloody blood sucking (blood) blaste${}rs", s)
+	err := cmd.Run()
+	//fmt.Println(check(err))
+
+	return check(err)
 }
 
-func MakeCountEndpoint(svc StringServiceI) endpoint.Endpoint {
+func MakeYellEndpoint(svc StringServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
-		req := request.(countRequest)
-		v := svc.Count(req.S)
-		return countResponse{v}, nil
+		req := request.(yellRequest)
+		v := svc.Yell(req.S)
+		return yellResponse{v}, nil
 	}
 }
 
-func DecodeCountRequest(r *http.Request) (interface{}, error) {
-	var request countRequest
+func DecodeYellRequest(r *http.Request) (interface{}, error) {
+	var request yellRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		return nil, err
 	}
@@ -61,12 +74,12 @@ func EncodeResponse(w http.ResponseWriter, response interface{}) error {
 	return json.NewEncoder(w).Encode(response)
 }
 
-type countRequest struct {
+type yellRequest struct {
 	S string `json:"s"`
 }
 
-type countResponse struct {
-	V int `json:"v"`
+type yellResponse struct {
+	E error `json:"e"`
 }
 
 // ErrEmpty is returned when an input string is empty.

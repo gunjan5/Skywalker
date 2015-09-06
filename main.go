@@ -18,30 +18,39 @@ package main
 */
 
 import (
-	_ "encoding/json"
-	_ "errors"
+	"fmt"
 	"log"
 	"net/http"
-	_ "strings"
 
 	"golang.org/x/net/context"
 
-	_ "github.com/go-kit/kit/endpoint"
 	httptransport "github.com/go-kit/kit/transport/http"
 	yell "github.com/gunjan5/Skywalker/yellingService"
 )
 
+// func check(e error) error {
+// 	if e != nil {
+// 		fmt.Println(e)
+// 		return e
+// 	}
+// 	return nil
+// }
+
 func main() {
 	ctx := context.Background()
-	svc := yell.stringService{}
+	svc := yell.YellingService{}
 
-	countHandler := httptransport.Server{
+	yellHandler := httptransport.Server{
 		Context:            ctx,
-		Endpoint:           yell.makeCountEndpoint(svc),
-		DecodeRequestFunc:  yell.decodeCountRequest,
-		EncodeResponseFunc: yell.encodeResponse,
+		Endpoint:           yell.MakeYellEndpoint(svc),
+		DecodeRequestFunc:  yell.DecodeYellRequest,
+		EncodeResponseFunc: yell.EncodeResponse,
 	}
 
-	http.Handle("/count", countHandler)
+	// cmd := exec.Command("say", "bloody blood sucking (blood) blaste${}rs")
+	// err := cmd.Run()
+	// fmt.Println(check(err))
+
+	http.Handle("/yell", yellHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
