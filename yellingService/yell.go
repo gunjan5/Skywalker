@@ -72,7 +72,7 @@ type yellRequest struct {
 }
 
 type yellResponse struct {
-	E error `json:"e"`
+	E string `json:"e"`
 }
 
 // ErrEmpty is returned when an input string is empty.
