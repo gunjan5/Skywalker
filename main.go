@@ -10,14 +10,33 @@ package main
 import (
 	"log"
 	"net/http"
-
+	"github.com/gorilla/mux"
+	"html/template"
 	"golang.org/x/net/context"
 
 	httptransport "github.com/go-kit/kit/transport/http"
 	yell "github.com/gunjan5/Skywalker/yellingService"
 )
 
+type Page struct {
+	Title string
+}
+
+var templates = template.Must(template.ParseFiles("index.html"))
+
+func RootHandler(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Content-type", "text/html")
+	err := request.ParseForm()
+	if err != nil {
+		http.Error(response, fmt.Sprintf("error parsing url %v", err), 500)
+	}
+	templates.ExecuteTemplate(response, "index.html", Page{Title: "Home"})
+}
+
+
 func main() {
+	router := mux.NewRouter()
+
 	ctx := context.Background()
 	svc := yell.YellingService{}
 
@@ -28,6 +47,8 @@ func main() {
 		EncodeResponseFunc: yell.EncodeResponse,
 	}
 
+	router.HandleFunc("/", RootHandler)
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(*staticPath))))
 	http.Handle("/yell", yellHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatalhttp.ListenAndServe(":8080", router))
 }
