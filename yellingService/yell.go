@@ -39,7 +39,7 @@ func (YellingService) Yell(s string) error {
 		cmd := exec.Command("say", "It's an empty string dummy!")
 		err := cmd.Run()
 		check(err)
-		return ErrEmpty
+		return "", ErrEmpty
 	}
 	cmd := exec.Command("say", s)
 	err := cmd.Run()
@@ -51,7 +51,7 @@ func MakeYellEndpoint(svc YellingServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(yellRequest)
 		e := svc.Yell(req.S)
-		return yellResponse{string(e)}, nil
+		return yellResponse{e.Error()}, nil
 	}
 }
 
@@ -72,7 +72,7 @@ type yellRequest struct {
 }
 
 type yellResponse struct {
-	E string `json:"e"`
+	Err string `json:"err,omitempty"`
 }
 
 // ErrEmpty is returned when an input string is empty.
