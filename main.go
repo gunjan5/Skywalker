@@ -8,14 +8,16 @@ package main
  */
 
 import (
+	"flag"
+	"fmt"
+	"github.com/gorilla/mux"
+	"golang.org/x/net/context"
+	"html/template"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
-	"html/template"
-	"golang.org/x/net/context"
 
 	httptransport "github.com/go-kit/kit/transport/http"
-	yell "github.com/gunjan5/Skywalker/yellingService"
+	yell "github.com/gunjan5/Skywalker/services/yellingService"
 )
 
 type Page struct {
@@ -23,6 +25,7 @@ type Page struct {
 }
 
 var templates = template.Must(template.ParseFiles("index.html"))
+var staticPath = flag.String("staticPath", "static/", "/Volumes/Other/Dropbox/Skywalker/static/")
 
 func RootHandler(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("Content-type", "text/html")
@@ -32,7 +35,6 @@ func RootHandler(response http.ResponseWriter, request *http.Request) {
 	}
 	templates.ExecuteTemplate(response, "index.html", Page{Title: "Home"})
 }
-
 
 func main() {
 	router := mux.NewRouter()
@@ -50,5 +52,5 @@ func main() {
 	router.HandleFunc("/", RootHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(*staticPath))))
 	http.Handle("/yell", yellHandler)
-	log.Fatalhttp.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

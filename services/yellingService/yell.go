@@ -51,7 +51,10 @@ func MakeYellEndpoint(svc YellingServiceI) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(yellRequest)
 		e := svc.Yell(req.S)
-		return yellResponse{e.Error()}, nil
+		if e != nil {
+			return yellResponse{e.Error()}, nil
+		}
+		return yellResponse{""}, nil
 	}
 }
 
