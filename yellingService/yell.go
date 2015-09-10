@@ -39,7 +39,7 @@ func (YellingService) Yell(s string) error {
 		cmd := exec.Command("say", "It's an empty string dummy!")
 		err := cmd.Run()
 		check(err)
-		return "", ErrEmpty
+		return ErrEmpty
 	}
 	cmd := exec.Command("say", s)
 	err := cmd.Run()
