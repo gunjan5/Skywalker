@@ -1,4 +1,4 @@
-Skywalker Project
+# ![Skywalker](https://raw.githubusercontent.com/gunjan5/Skywalker/master/Skywalker_logo_70.png) Skywalker Project
 ====================
 
 ### CloudOS with Docker containers, Kubernetes, Redis Message bus, Logging system, UI
