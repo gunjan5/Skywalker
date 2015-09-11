@@ -9,10 +9,10 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	_ "fmt"
 	"github.com/gorilla/mux"
 	"golang.org/x/net/context"
-	"html/template"
+	_ "html/template"
 	"log"
 	"net/http"
 
@@ -20,21 +20,8 @@ import (
 	yell "github.com/gunjan5/Skywalker/services/yellingService"
 )
 
-type Page struct {
-	Title string
-}
-
-var templates = template.Must(template.ParseFiles("index.html"))
+//var templates = template.Must(template.ParseFiles("index.html"))
 var staticPath = flag.String("staticPath", "static/", "/Volumes/Other/Dropbox/Skywalker/static/")
-
-func RootHandler(response http.ResponseWriter, request *http.Request) {
-	response.Header().Set("Content-type", "text/html")
-	err := request.ParseForm()
-	if err != nil {
-		http.Error(response, fmt.Sprintf("error parsing url %v", err), 500)
-	}
-	templates.ExecuteTemplate(response, "index.html", Page{Title: "Home"})
-}
 
 func main() {
 	router := mux.NewRouter()
@@ -52,5 +39,6 @@ func main() {
 	router.HandleFunc("/", RootHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(*staticPath))))
 	http.Handle("/yell", yellHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	go http.ListenAndServe(":8080", nil)
+	go log.Fatal(http.ListenAndServe(":8081", router))
 }

@@ -1,0 +1,39 @@
+{
+	"ImportPath": "github.com/gunjan5/Skywalker",
+	"GoVersion": "go1.5",
+	"Deps": [
+		{
+			"ImportPath": "github.com/go-kit/kit/endpoint",
+			"Rev": "cbf19dc685d2bd845598c6008e65525426b8fe1e"
+		},
+		{
+			"ImportPath": "github.com/go-kit/kit/log",
+			"Rev": "cbf19dc685d2bd845598c6008e65525426b8fe1e"
+		},
+		{
+			"ImportPath": "github.com/go-kit/kit/transport/http",
+			"Rev": "cbf19dc685d2bd845598c6008e65525426b8fe1e"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "1c83b3eabd45b6d76072b66b746c20815fb2872d"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Rev": "ee1815431e497d3850809578c93ab6705f1a19f7"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "db8e4de5b2d6653f66aea53094624468caad15d2"
+		},
+		{
+			"ImportPath": "gopkg.in/logfmt.v0",
+			"Rev": "c50dc9aa845e681529d8e49d3dc11ec0195aacac"
+		},
+		{
+			"ImportPath": "gopkg.in/stack.v1",
+			"Comment": "v1.3",
+			"Rev": "3fb218c9a50242b793f72e27921b75990176cea8"
+		}
+	]
+}

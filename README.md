@@ -1,14 +1,17 @@
-# ![Skywalker](https://raw.githubusercontent.com/gunjan5/Skywalker/master/Skywalker_logo_70.png) Skywalker Project
-====================
+# ![Skywalker](https://raw.githubusercontent.com/gunjan5/Skywalker/master/Skywalker_logo_70.png) Skywalker
 
-### CloudOS with Docker containers, Kubernetes, Redis Message bus, Logging system, UI
-----------------------------------------------------------------------------------
+### :cloud: Platform to help launch Docker, Kubernetes, Logging, DB, LB
+------------------------------------------------------------------------
 #### *One click to deploy pods with prewired components*
 #### *Things just work* 
 
 ## Components
 - [ ] Kubernetes
 - [ ] UI
+- [ ] Predefined environment 1 (Golang 1.5, Ubuntu 15.10)
+- [ ] Predefined environment 2 (Python 2.7.5, Alpine)
+- [ ] Predefined environment 3 (Java 7, Fedora 22)
+- [ ] Predefined environment 4 (Java 8, Ubuntu 14.04)
 - [ ] Elasticsearch
 - [ ] Logstash
 - [ ] Kibana
@@ -20,10 +23,6 @@
 - [ ] MySQL
 - [ ] Cassandra
 - [ ] CLI in web browser (with gotty)
-- [ ] Predefined environment 1 (Golang 1.5, Ubuntu 15.10)
-- [ ] Predefined environment 2 (Python 2.7.5, Alpine)
-- [ ] Predefined environment 3 (Java 7, Fedora 22)
-- [ ] Predefined environment 4 (Java 8, Ubuntu 14.04)
 - [ ] MEssagebus/etcd/Kafka?
 - [ ] Loadbalancer (LBaaS)
 - [ ] Service Discovery
