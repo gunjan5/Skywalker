@@ -2,8 +2,8 @@
 
 ### :cloud: Platform to help launch Docker, Kubernetes, Logging, DB, LB
 ------------------------------------------------------------------------
-#### *One click to deploy pods with prewired components*
-#### *Things just work* 
+#### *One click to deploy pods with <span>prewired</span> components*
+#### *Things <span>just work</span>* 
 
 ## Components
 - [ ] Kubernetes
@@ -33,3 +33,6 @@
 -------------------------------
 Like the legend of the Phoenix All ends with beginnings What keeps the planets spinning (uh) The force from the beginning We've come too far to give up who we are So let's raise the bar and our cups to the stars
 
+span {
+    text-decoration:underline;
+}
