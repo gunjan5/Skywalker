@@ -27,12 +27,21 @@
 - [ ] Loadbalancer (LBaaS)
 - [ ] Service Discovery
 
+## How To Start Skywalker
+- Clone the project: `git clone https://github.com/gunjan5/Skywalker.git`
+- `cd Skywalker`
+- Build the image: `sudo docker build -t skywalker .`
+- Start the container /w privileged mode: ` sudo docker run -it --privileged --name sky1 -d skywalker`
+- (optional) get into the container shell: `sudo docker exec -it sky1 sh` 
 
 
 ### Up all night to get lucky!
 -------------------------------
 Like the legend of the Phoenix All ends with beginnings What keeps the planets spinning (uh) The force from the beginning We've come too far to give up who we are So let's raise the bar and our cups to the stars
 
+
+<style type="text/css">
 span {
     text-decoration:underline;
 }
+</style>
