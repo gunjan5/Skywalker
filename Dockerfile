@@ -10,6 +10,12 @@ ENV GOPATH /gopath
 ENV GOBIN /gopath/bin
 ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
 
+RUN git clone https://github.com/GoogleCloudPlatform/kubernetes
+RUN cd kubernetes/
+RUN KUBE_STATIC_OVERRIDES=kubectl hack/build-go.sh cmd/kubectl
+RUN cd cd /kubernetes/_output/local/bin/linux/amd64/
+RUN  mv kubectl /usr/local/bin/
+
 
 #RUN mkdir /app
 #ADD . /app/
@@ -20,6 +26,7 @@ EXPOSE 8081
 #WORKDIR /app
 
 RUN ls -la
+RUN kubectl
 
 CMD []
 
