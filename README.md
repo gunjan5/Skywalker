@@ -40,8 +40,8 @@
 Like the legend of the Phoenix All ends with beginnings What keeps the planets spinning (uh) The force from the beginning We've come too far to give up who we are So let's raise the bar and our cups to the stars
 
 
-<style type="text/css">
-span {
-    text-decoration:underline;
-}
-</style>
+## Scratch
+
+KUBE_STATIC_OVERRIDES=kubectl hack/build-go.sh cmd/kubectl
+
+

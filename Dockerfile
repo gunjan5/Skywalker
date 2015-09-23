@@ -3,7 +3,7 @@ FROM docker:dind
 MAINTAINER Gunjan Patel <github.com/gunjan5>
 
 #install Golang and set ENV for Go
-RUN apk update && apk add curl git mercurial bzr go && rm -rf /var/cache/apk/*
+RUN apk update && apk add curl rsync bash git mercurial bzr go && rm -rf /var/cache/apk/*
 
 ENV GOROOT /usr/lib/go
 ENV GOPATH /gopath
