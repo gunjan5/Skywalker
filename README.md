@@ -30,9 +30,10 @@
 ## How To Start Skywalker
 - Clone the project: `git clone https://github.com/gunjan5/Skywalker.git`
 - `cd Skywalker`
-- Build the image: `sudo docker build -t skywalker .`
-- Start the container /w privileged mode: ` sudo docker run -it --privileged --name sky1 -d skywalker`
-- (optional) get into the container shell: `sudo docker exec -it sky1 sh` 
+- Build the image: `make build`
+- Start the container /w privileged mode: ` make run`
+- (optional) get into the container shell: `make cli` 
+- Cleanup: `make clean`
 
 
 ### Up all night to get lucky!
@@ -45,3 +46,25 @@ Like the legend of the Phoenix All ends with beginnings What keeps the planets s
 KUBE_STATIC_OVERRIDES=kubectl hack/build-go.sh cmd/kubectl
 
 
+/ # find . -name kubectl
+./kubernetes/docs/user-guide/kubectl
+./kubernetes/_output/local/go/pkg/linux_amd64_cgo/k8s.io/kubernetes/pkg/kubectl
+./kubernetes/_output/local/go/bin/kubectl
+./kubernetes/_output/local/bin/linux/amd64/kubectl
+./kubernetes/pkg/kubectl
+./kubernetes/contrib/completions/bash/kubectl
+./kubernetes/cmd/kubectl
+/ # cd /kubernetes/_output/local/bin/linux/amd64/
+/kubernetes/_output/local/bin/linux/amd64 # ls -la
+total 21044
+drwxr-xr-x    2 root     root          4096 Sep 23 07:52 .
+drwxr-xr-x    3 root     root          4096 Sep 23 07:52 ..
+-rwxr-xr-x    1 root     root      21536880 Sep 23 07:52 kubectl
+/kubernetes/_output/local/bin/linux/amd64 # ./kubectl 
+kubectl controls the Kubernetes cluster manager.
+
+Find more information at https://github.com/kubernetes/kubernetes.
+
+Usage: 
+  kubectl [flags]
+  kubectl [command]
