@@ -1,12 +1,17 @@
 build:
-	sudo docker build -t skywalker .
+	go build -a -v main.go server.go
 
-run:
-	sudo docker run -it --privileged --name sky1 -d skywalker
+start:
+	go build -v main.go server.go
+	./main
 
-cli:
-	sudo docker exec -it sky1 sh
+get:
+	go get github.com/gorilla/mux
+	go get golang.org/x/net/context
+	go get github.com/go-kit/kit/transport/http
+	go get github.com/gunjan5/Skywalker/services/yellingService
+	go get github.com/go-kit/kit/endpoint
+	
 
-clean:
-	sudo docker kill sky1
-	sudo docker rm sky1
+
+
