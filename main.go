@@ -29,12 +29,12 @@ func main() {
 	ctx := context.Background()
 	svc := yell.YellingService{}
 
-	yellHandler := httptransport.Server{
-		Context:            ctx,
-		Endpoint:           yell.MakeYellEndpoint(svc),
-		DecodeRequestFunc:  yell.DecodeYellRequest,
-		EncodeResponseFunc: yell.EncodeResponse,
-	}
+	yellHandler := httptransport.NewServer(
+		ctx,
+		yell.MakeYellEndpoint(svc),
+		yell.DecodeYellRequest,
+		yell.EncodeResponse,
+	)
 
 	router.HandleFunc("/", RootHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(*staticPath))))
