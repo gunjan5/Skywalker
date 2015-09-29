@@ -17,6 +17,7 @@ import (
 	"net/http"
 
 	httptransport "github.com/go-kit/kit/transport/http"
+	compose "github.com/gunjan5/Skywalker/services/composeService"
 	yell "github.com/gunjan5/Skywalker/services/yellingService"
 )
 
@@ -36,9 +37,17 @@ func main() {
 		yell.EncodeResponse,
 	)
 
+	composeHandler := httptransport.NewServer(
+		ctx,
+		compose.MakeComposeEndpoint(svc),
+		compose.DecodeComposeRequest,
+		compose.EncodeResponse,
+	)
+
 	router.HandleFunc("/", RootHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(*staticPath))))
 	http.Handle("/yell", yellHandler)
+	http.Handle("/compose", composeHandler)
 	go http.ListenAndServe(":8080", nil)
 	go log.Fatal(http.ListenAndServe(":8081", router))
 }
