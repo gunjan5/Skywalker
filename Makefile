@@ -12,6 +12,8 @@ get:
 	go get github.com/gunjan5/Skywalker/services/composeService
 	go get github.com/gunjan5/Skywalker/services/yellingService
 	go get github.com/go-kit/kit/endpoint
+	go get github.com/docker/libcompose/docker
+	go get github.com/docker/libcompose/project
 	
 
 
