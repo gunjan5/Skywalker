@@ -9,6 +9,7 @@ get:
 	go get github.com/gorilla/mux
 	go get golang.org/x/net/context
 	go get github.com/go-kit/kit/transport/http
+	go get github.com/gunjan5/Skywalker/services/composeService
 	go get github.com/gunjan5/Skywalker/services/yellingService
 	go get github.com/go-kit/kit/endpoint
 	
